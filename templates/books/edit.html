@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="/books/{{ book.id }}" method="POST" class="form">
+    <div>
+        <label for="title">Book Title:</label>
+        <input type="text" id="title" name="title" value="{{book.title}}"  required autofocus>
+    </div>
+    <div>
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" name="genre" value="{{book.genre}}" required autofocus>
+    </div>
+    <div>
+        <label for="author">Author:</label>
+        <select id='author' name='author_id'>
+            {% for author in authors %}
+            <option value="{{ author.id }}" {% if book.author.id == author.id %} selected="selected"{% endif %}>{{ author.first_name }} {{ author.last_name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <button type="submit" class="edit-button">Edit Book</button>
+</form>
+{% endblock %}

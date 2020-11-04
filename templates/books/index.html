@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for book in books %}
+        <div class="book-container">
+            <div class="content">
+                <h2>{{book.title}}</h2>
+                <hr>
+                <h3>{{book.author.first_name}} {{book.author.last_name}}</h3>
+                <h4>{{book.genre}}</h4>
+            </div>
+            <hr>
+            <div class="buttons">
+                <form action="/books/{{ book.id }}/delete" class="delete-form" method="POST">
+                    <button class="trash-button">
+                        Delete Book
+                    </button>
+                </form>
+                <form action="/books/{{ book.id }}/edit" class="edit-form">
+                    <button class="edit-button">
+                        Edit Book
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    {% endfor %}
+{% endblock %}
